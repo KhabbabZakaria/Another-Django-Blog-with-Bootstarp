@@ -1,0 +1,81 @@
+{% load static %}
+
+<link rel="stylesheet" 
+type="text/css"  
+href="{% static 'base/css/bootstrap.css' %}"
+/>
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'post-create' %}">New Post</a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Sign Out</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+</nav>
+
+
+<html>
+    <body style="background-color: rgb(19, 18, 18)">
+      <center>
+      <div class="alert alert-success" role="alert">
+        Hello! Welcome {{ user }}
+      </div>
+
+        
+        <br>
+        <br>
+        <div class="card" style="width: 28rem;">
+            <img class="card-img-top" src="{% static 'img/starshine.jpg' %}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">My beautiful Card</h5>
+              <p class="card-text"><div class="p-3 mb-2 bg-primary text-white">Here is my beautiful card from Rose Scarlet.</div></p>
+              <a href="https://www.amazon.com/Starshine-Winter-Zakwolf-ebook/dp/B086SY28G6/ref=sr_1_1?crid=L2AB1QZNHSP&keywords=starshine+winter+zakwolf&qid=1659831099&sprefix=starshine+winter+zakwolf%2Caps%2C274&sr=8-1" class="btn btn-primary">Buy in Amazon</a>
+            </div>
+          </div>   
+          
+          <br>
+        {% for post in posts %}
+        
+        <div class="alert alert-primary" role="alert">
+          <h1>{{post.title}}</h1> 
+       </div>
+        <div class="card" style="width: 28rem;">
+          <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'post-detail' post.id %}">{{post.title}}</a></h5>
+            <p class="card-text">  
+              <p><div class="p-3 mb-2 bg-info text-white">By {{post.author}} on {{post.datePosted}}</div></p>
+              <p>{{post.content}}</p>
+            </p>
+            <a href="{{post.link}}" class="btn btn-primary">Go to link</a>
+          </div>
+        </div>
+
+        <br>
+        <br>
+        
+        {% endfor %}
+
+
+        </p>
+      </center>
+    </body>
+</html>

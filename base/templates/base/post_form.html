@@ -1,0 +1,23 @@
+{% load static %}
+
+<link rel="stylesheet" 
+type="text/css"  
+href="{% static 'base/css/bootstrap.css' %}"
+/>
+
+<center>
+    <div>
+        <form method="POST"  enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset>
+                <legend>
+                    <div class="p-3 mb-2 bg-dark text-white">New Post</div>
+                    
+                </legend>
+                {{ form.as_p }}
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      
+    </div>
+</center>

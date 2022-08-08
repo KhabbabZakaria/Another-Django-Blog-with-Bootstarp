@@ -1,0 +1,24 @@
+{% load static %}
+
+<link rel="stylesheet" 
+type="text/css"  
+href="{% static 'base/css/bootstrap.css' %}"
+/>
+
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend>
+                Register Page
+            </legend>
+            {{ form.as_p }}
+        </fieldset>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+    <div>
+        <small>Already have an account? <a href="{% url 'login' %}">Sign In</a> </small>
+    </div>
+    
+</div>
